@@ -1,0 +1,1094 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{opencv\_build\_dataset}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsubsection{OpenCV-Python is a library of Python bindings designed to
+solve computer vision
+problems.}\label{opencv-python-is-a-library-of-python-bindings-designed-to-solve-computer-vision-problems.}
+
+OpenCV supports a wide variety of programming languages such as C++,
+Python, Java, etc., and is available on different platforms including
+Windows, Linux, OS X, Android, and iOS.
+
+OpenCV-Python makes use of Numpy, which is a highly optimized library
+for numerical operations
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{cv2}
+        \PY{n}{cv2}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}version\PYZus{}\PYZus{}}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}1}]:} '3.4.1'
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{os}
+        \PY{k+kn}{import} \PY{n+nn}{pickle}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{display} \PY{k}{import} \PY{n}{clear\PYZus{}output}
+        \PY{k+kn}{import} \PY{n+nn}{pygame}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+pygame 1.9.4
+Hello from the pygame community. https://www.pygame.org/contribute.html
+
+    \end{Verbatim}
+
+    \subsubsection{open webcam and capture a
+frame}\label{open-webcam-and-capture-a-frame}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{n}{webcam} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{VideoCapture}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n}{ret} \PY{p}{,}\PY{n}{frame} \PY{o}{=} \PY{n}{webcam}\PY{o}{.}\PY{n}{read}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{ret}\PY{p}{)}
+         \PY{n}{webcam}\PY{o}{.}\PY{n}{release}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+True
+
+    \end{Verbatim}
+
+    \paragraph{webcam.read(): returns a frame and boolean
+value(True/False)..if frame is read correctly, it will be
+True.}\label{webcam.read-returns-a-frame-and-boolean-valuetruefalse..if-frame-is-read-correctly-it-will-be-true.}
+
+\paragraph{webcam.release() :to close
+webcam}\label{webcam.release-to-close-webcam}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n+nb}{type}\PY{p}{(}\PY{n}{frame}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}34}]:} numpy.ndarray
+\end{Verbatim}
+            
+    \subsubsection{Display an image}\label{display-an-image}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{cv2}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{opencv\PYZus{}2}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{frame}\PY{p}{)}
+          
+         \PY{c+c1}{\PYZsh{} Press any key to close external window}
+         \PY{n}{cv2}\PY{o}{.}\PY{n}{waitKey}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}   
+         \PY{n}{cv2}\PY{o}{.}\PY{n}{destroyAllWindows}\PY{p}{(}\PY{p}{)} 
+\end{Verbatim}
+
+
+    \paragraph{cv.waitKey() is a keyboard binding function. Its argument is
+the time in milliseconds. The function waits for specified milliseconds
+for any keyboard event. If you press any key in that time, the program
+continues. If 0 is passed, it waits indefinitely for a key
+stroke}\label{cv.waitkey-is-a-keyboard-binding-function.-its-argument-is-the-time-in-milliseconds.-the-function-waits-for-specified-milliseconds-for-any-keyboard-event.-if-you-press-any-key-in-that-time-the-program-continues.-if-0-is-passed-it-waits-indefinitely-for-a-key-stroke}
+
+\paragraph{cv.destroyAllWindows() simply destroys all the windows we
+created.}\label{cv.destroyallwindows-simply-destroys-all-the-windows-we-created.}
+
+    \subsubsection{To create external
+window}\label{to-create-external-window}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{n}{cv2}\PY{o}{.}\PY{n}{namedWindow}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{open\PYZus{}cv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{WINDOW\PYZus{}NORMAL}\PY{p}{)}
+         \PY{n}{cv2}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{open\PYZus{}cv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{frame}\PY{p}{)}
+         \PY{n}{cv2}\PY{o}{.}\PY{n}{waitKey}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n}{cv2}\PY{o}{.}\PY{n}{destroyAllWindows}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{frame}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_12_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} matplotlib support RGB and opencv support BGR}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{n}{frame\PYZus{}RGB} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{frame}\PY{p}{,}\PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2RGB}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{frame\PYZus{}RGB}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection{Read and Write Images}\label{read-and-write-images}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{n}{cv2}\PY{o}{.}\PY{n}{imwrite}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{picture\PYZus{}RGB.jpg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{frame\PYZus{}RGB}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}41}]:} True
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{n}{picture} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{picture\PYZus{}RGB.jpg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{picture}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_19_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{c+c1}{\PYZsh{} Open connection to camera}
+         \PY{n}{webcam} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{VideoCapture}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{}External Window or in Notebook}
+         \PY{n}{cv2}\PY{o}{.}\PY{n}{namedWindow}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{opencv\PYZus{}1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{WINDOW\PYZus{}AUTOSIZE}\PY{p}{)}
+          
+         \PY{k}{while} \PY{k+kc}{True}\PY{p}{:}
+               
+             \PY{n}{ret}\PY{p}{,} \PY{n}{frame} \PY{o}{=} \PY{n}{webcam}\PY{o}{.}\PY{n}{read}\PY{p}{(}\PY{p}{)}
+             \PY{n}{cv2}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{opencv\PYZus{}1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{frame}\PY{p}{)} 
+              
+             \PY{c+c1}{\PYZsh{} Press q for close window}
+             \PY{c+c1}{\PYZsh{}here 10 is a milliseconds}
+             \PY{k}{if} \PY{n}{cv2}\PY{o}{.}\PY{n}{waitKey}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{o}{==} \PY{n+nb}{ord}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{q}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{break}
+         \PY{n}{webcam}\PY{o}{.}\PY{n}{release}\PY{p}{(}\PY{p}{)}        
+         \PY{n}{cv2}\PY{o}{.}\PY{n}{destroyAllWindows}\PY{p}{(}\PY{p}{)} 
+\end{Verbatim}
+
+
+    \subsubsection{Face Detection using Haar
+Cascades}\label{face-detection-using-haar-cascades}
+
+    List of available pretraied models in OpenCV:
+
+\begin{verbatim}
+<li> haarcascade_eye_tree_eyeglasses  
+<li> haarcascade_mcs_leftear
+<li> haarcascade_eye                  
+<li> haarcascade_mcs_lefteye
+<li> haarcascade_frontalface_alt2   
+<li> haarcascade_mcs_mouth
+<li> haarcascade_frontalface_alt_tree
+<li> haarcascade_mcs_nose
+<li> <font style="color: #be2830">haarcascade_frontalface_alt</font>       
+<li> haarcascade_mcs_rightear
+<li> haarcascade_frontalface_default
+\end{verbatim}
+
+\begin{verbatim}
+<li> haarcascade_mcs_righteye
+<li> haarcascade_fullbody            
+<li> haarcascade_mcs_upperbody
+<li> haarcascade_lefteye_2splits    
+<li> haarcascade_profileface
+<li> haarcascade_lowerbody            
+<li> haarcascade_righteye_2splits
+<li> haarcascade_mcs_eyepair_big     
+<li> haarcascade_smile
+<li> haarcascade_mcs_eyepair_small
+<li> haarcascade_upperbody
+\end{verbatim}
+
+    \subsubsection{Detecting Faces with
+OpenCV}\label{detecting-faces-with-opencv}
+
+    \subsubsection{detector = cv2.CascadeClassifier(
+xml\_file\_path)}\label{detector-cv2.cascadeclassifier-xml_file_path}
+
+\subsubsection{face\_coord = detector.detectMultiScale(image,
+scale\_factor, min\_neighbors, min\_size,
+max\_size)}\label{face_coord-detector.detectmultiscaleimage-scale_factor-min_neighbors-min_size-max_size}
+
+    \paragraph{image : gray scale image where face are
+detected.}\label{image-gray-scale-image-where-face-are-detected.}
+
+\paragraph{scale\_factor:Parameter specifying how much the image size is
+reduced at each image
+scale.}\label{scale_factorparameter-specifying-how-much-the-image-size-is-reduced-at-each-image-scale.}
+
+\paragraph{minNeighbors -- Parameter specifying how many neighbors each
+candidate rectangle should have to retain
+it.}\label{minneighbors-parameter-specifying-how-many-neighbors-each-candidate-rectangle-should-have-to-retain-it.}
+
+\paragraph{minSize -- Minimum possible object size. Objects smaller than
+that are
+ignored.}\label{minsize-minimum-possible-object-size.-objects-smaller-than-that-are-ignored.}
+
+\paragraph{maxSize -- Maximum possible object size. Objects larger than
+that are
+ignored.}\label{maxsize-maximum-possible-object-size.-objects-larger-than-that-are-ignored.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}45}]:} \PY{n}{picture}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}45}]:} (480, 640, 3)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} \PY{n}{faceDetect}\PY{o}{=}\PY{n}{cv2}\PY{o}{.}\PY{n}{CascadeClassifier}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{xml/frontal\PYZus{}face.xml}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{cam} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{VideoCapture}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+         
+         \PY{n}{cv2}\PY{o}{.}\PY{n}{namedWindow}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Face}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{WINDOW\PYZus{}AUTOSIZE}\PY{p}{)}
+         
+         \PY{k}{while} \PY{k+kc}{True}\PY{p}{:}
+             \PY{n}{ret}\PY{p}{,}\PY{n}{img} \PY{o}{=} \PY{n}{cam}\PY{o}{.}\PY{n}{read}\PY{p}{(}\PY{p}{)}
+             \PY{n}{gray} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{img}\PY{p}{,}\PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2GRAY}\PY{p}{)}
+             \PY{n}{faces} \PY{o}{=} \PY{n}{faceDetect}\PY{o}{.}\PY{n}{detectMultiScale}\PY{p}{(}\PY{n}{gray}\PY{p}{,}\PY{n}{scaleFactor}\PY{o}{=}\PY{l+m+mf}{1.2}\PY{p}{,}\PY{n}{minNeighbors}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+         
+             \PY{k}{for} \PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{w}\PY{p}{,}\PY{n}{h}\PY{p}{)} \PY{o+ow}{in} \PY{n}{faces}\PY{p}{:}
+                 \PY{n}{cv2}\PY{o}{.}\PY{n}{rectangle}\PY{p}{(}\PY{n}{img}\PY{p}{,}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)}\PY{p}{,}\PY{p}{(}\PY{n}{x}\PY{o}{+}\PY{n}{w}\PY{p}{,}\PY{n}{y}\PY{o}{+}\PY{n}{h}\PY{p}{)}\PY{p}{,}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{255}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+             
+             
+             
+             
+             
+             \PY{n}{cv2}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Face}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{img}\PY{p}{)}
+             \PY{k}{if} \PY{p}{(}\PY{n}{cv2}\PY{o}{.}\PY{n}{waitKey}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{o}{==} \PY{n+nb}{ord}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{q}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{break}
+         
+         \PY{n}{cam}\PY{o}{.}\PY{n}{release}\PY{p}{(}\PY{p}{)}
+         \PY{n}{cv2}\PY{o}{.}\PY{n}{destroyAllWindows}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    Build Our Dataset
+
+Detect \(\rightarrow\) Cut \(\rightarrow\) Normalize \(\rightarrow\)
+Resize \(\rightarrow\) Save
+
+    \subsubsection{detect face}\label{detect-face}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} \PY{k}{def} \PY{n+nf}{detect\PYZus{}face}\PY{p}{(}\PY{n}{frame}\PY{p}{)}\PY{p}{:}
+             \PY{k}{if} \PY{n}{frame}\PY{o}{.}\PY{n}{ndim}\PY{o}{!=}\PY{l+m+mi}{2}\PY{p}{:}
+                 \PY{n}{frame} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{frame}\PY{p}{,}\PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2GRAY}\PY{p}{)}
+                 
+             \PY{n}{detector} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{CascadeClassifier}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{xml/frontal\PYZus{}face.xml}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         
+             \PY{n}{faces} \PY{o}{=} \PY{n}{detector}\PY{o}{.}\PY{n}{detectMultiScale}\PY{p}{(}\PY{n}{frame}\PY{p}{,}\PY{l+m+mf}{1.2}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
+             
+             \PY{k}{return} \PY{n}{faces}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} \PY{k}{def} \PY{n+nf}{gray\PYZus{}scale}\PY{p}{(}\PY{n}{image}\PY{p}{)}\PY{p}{:}
+             \PY{k}{if} \PY{n}{image}\PY{o}{.}\PY{n}{ndim}\PY{o}{!=}\PY{l+m+mi}{2}\PY{p}{:}
+                     \PY{n}{image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2GRAY}\PY{p}{)}
+             
+             \PY{k}{return} \PY{n}{image}
+\end{Verbatim}
+
+
+    \subsubsection{Cut face}\label{cut-face}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} \PY{k}{def} \PY{n+nf}{cut\PYZus{}faces}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{faces\PYZus{}coord}\PY{p}{)}\PY{p}{:}
+             \PY{n}{faces} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+               
+             \PY{k}{for} \PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{w}\PY{p}{,} \PY{n}{h}\PY{p}{)} \PY{o+ow}{in} \PY{n}{faces\PYZus{}coord}\PY{p}{:}
+                 
+                 \PY{n}{faces}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{image}\PY{p}{[}\PY{n}{y}\PY{p}{:} \PY{n}{y} \PY{o}{+} \PY{n}{h}\PY{p}{,} \PY{n}{x} \PY{p}{:} \PY{n}{x} \PY{o}{+} \PY{n}{w} \PY{p}{]}\PY{p}{)}
+                  
+             \PY{k}{return} \PY{n}{faces}
+\end{Verbatim}
+
+
+    \subsubsection{Normalize faces by increasing pixel
+intensity(brightness)}\label{normalize-faces-by-increasing-pixel-intensitybrightness}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} \PY{k}{def} \PY{n+nf}{normalize\PYZus{}intensity}\PY{p}{(}\PY{n}{images}\PY{p}{)}\PY{p}{:}
+             \PY{n}{images\PYZus{}norm} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{image} \PY{o+ow}{in} \PY{n}{images}\PY{p}{:}
+                 \PY{n}{is\PYZus{}color} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{image}\PY{o}{.}\PY{n}{shape}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{3} 
+                 \PY{k}{if} \PY{n}{is\PYZus{}color}\PY{p}{:}
+                     \PY{n}{image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2GRAY}\PY{p}{)}
+                 \PY{n}{images\PYZus{}norm}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{cv2}\PY{o}{.}\PY{n}{equalizeHist}\PY{p}{(}\PY{n}{image}\PY{p}{)}\PY{p}{)}   \PY{c+c1}{\PYZsh{}passes grayscale image into equalizeHist as parameter}
+             \PY{k}{return} \PY{n}{images\PYZus{}norm}
+\end{Verbatim}
+
+
+    \subsubsection{Resize}\label{resize}
+
+\paragraph{cv.INTER\_AREA for shrinking \& cv.INTER\_CUBIC for
+zooming}\label{cv.inter_area-for-shrinking-cv.inter_cubic-for-zooming}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{k}{def} \PY{n+nf}{resize}\PY{p}{(}\PY{n}{images}\PY{p}{,}\PY{n}{size}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{47}\PY{p}{,}\PY{l+m+mi}{62}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{n}{image\PYZus{}resize} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             
+             \PY{k}{for} \PY{n}{image} \PY{o+ow}{in} \PY{n}{images}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{image}\PY{o}{.}\PY{n}{shape} \PY{o}{\PYZlt{}} \PY{n}{size}\PY{p}{:}
+                     \PY{n}{img\PYZus{}size} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{resize}\PY{p}{(}\PY{n}{image}\PY{p}{,}\PY{n}{size}\PY{p}{,}\PY{n}{interpolation}\PY{o}{=}\PY{n}{cv2}\PY{o}{.}\PY{n}{INTER\PYZus{}CUBIC}\PY{p}{)}   \PY{c+c1}{\PYZsh{}interpolation is used for zooming in hereby passing inter\PYZus{}cubic}
+                 \PY{k}{else}\PY{p}{:}
+                     \PY{n}{img\PYZus{}size} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{resize}\PY{p}{(}\PY{n}{image}\PY{p}{,}\PY{n}{size}\PY{p}{,}\PY{n}{interpolation}\PY{o}{=}\PY{n}{cv2}\PY{o}{.}\PY{n}{INTER\PYZus{}AREA}\PY{p}{)}\PY{c+c1}{\PYZsh{}interpolation here is used for to manipulate if size of face is greater than given size i.e.(47,62)}
+                 \PY{n}{image\PYZus{}resize}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{img\PYZus{}size}\PY{p}{)}
+                 
+             \PY{k}{return} \PY{n}{image\PYZus{}resize}
+\end{Verbatim}
+
+
+    \subsubsection{Make pipeline}\label{make-pipeline}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} \PY{k}{def} \PY{n+nf}{normalize\PYZus{}faces}\PY{p}{(}\PY{n}{frame}\PY{p}{,} \PY{n}{faces\PYZus{}coord}\PY{p}{)}\PY{p}{:}
+             \PY{n}{gray\PYZus{}frame} \PY{o}{=} \PY{n}{gray\PYZus{}scale}\PY{p}{(}\PY{n}{frame}\PY{p}{)}
+             \PY{n}{faces} \PY{o}{=} \PY{n}{cut\PYZus{}faces}\PY{p}{(}\PY{n}{gray\PYZus{}frame}\PY{p}{,} \PY{n}{faces\PYZus{}coord}\PY{p}{)}
+             \PY{n}{faces} \PY{o}{=} \PY{n}{normalize\PYZus{}intensity}\PY{p}{(}\PY{n}{faces}\PY{p}{)}
+             
+             \PY{n}{faces} \PY{o}{=} \PY{n}{resize}\PY{p}{(}\PY{n}{faces}\PY{p}{)}
+             \PY{k}{return} \PY{n}{faces}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}53}]:} \PY{k}{def} \PY{n+nf}{plot\PYZus{}show}\PY{p}{(}\PY{n}{image}\PY{p}{,}\PY{n}{title}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{:}
+             \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{image}\PY{o}{.}\PY{n}{shape}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{3}\PY{p}{:}
+                 \PY{n}{image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2RGB}\PY{p}{)}
+             
+             \PY{n}{plt}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{off}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}   \PY{c+c1}{\PYZsh{}to remove the values of x \PYZam{} y from the axis}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{n}{title}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{image}\PY{p}{,}\PY{n}{cmap}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Greys\PYZus{}r}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}  \PY{c+c1}{\PYZsh{}for image in grayscale color mapping}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}54}]:} \PY{k}{def} \PY{n+nf}{draw\PYZus{}rectangle}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{coords}\PY{p}{)}\PY{p}{:}
+             \PY{k}{for} \PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{w}\PY{p}{,} \PY{n}{h}\PY{p}{)} \PY{o+ow}{in} \PY{n}{coords}\PY{p}{:}
+                 \PY{c+c1}{\PYZsh{}w\PYZus{}rm = int(0.2 * w / 2) }
+                 \PY{n}{cv2}\PY{o}{.}\PY{n}{rectangle}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{p}{(}\PY{n}{x} \PY{p}{,} \PY{n}{y}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{n}{x} \PY{o}{+} \PY{n}{w} \PY{p}{,} \PY{n}{y} \PY{o}{+} \PY{n}{h}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{255}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{k+kn}{import} \PY{n+nn}{cv2}
+         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         \PY{k+kn}{import} \PY{n+nn}{os}
+         \PY{k+kn}{import} \PY{n+nn}{pickle}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+         \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{display} \PY{k}{import} \PY{n}{clear\PYZus{}output}
+         
+         \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+         
+         \PY{n}{cam} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{VideoCapture}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}cv2.namedWindow(\PYZdq{}Face\PYZdq{}, cv2.WINDOW\PYZus{}AUTOSIZE)}
+         \PY{n}{folder} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{people/}\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n+nb}{input}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Person:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{lower}\PY{p}{(}\PY{p}{)}
+         
+         
+         \PY{k}{if} \PY{o+ow}{not} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{exists}\PY{p}{(}\PY{n}{folder}\PY{p}{)}\PY{p}{:}
+             \PY{n}{os}\PY{o}{.}\PY{n}{mkdir}\PY{p}{(}\PY{n}{folder}\PY{p}{)}   \PY{c+c1}{\PYZsh{}to create the folder of name given}
+             
+             \PY{n}{flag\PYZus{}start\PYZus{}capturing} \PY{o}{=} \PY{k+kc}{False}
+             \PY{n}{sample}\PY{o}{=}\PY{l+m+mi}{1}
+             \PY{c+c1}{\PYZsh{}cam = cv2.VideoCapture(0)}
+             \PY{n}{cv2}\PY{o}{.}\PY{n}{namedWindow}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Face}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{WINDOW\PYZus{}AUTOSIZE}\PY{p}{)}
+         
+             \PY{k}{while} \PY{k+kc}{True}\PY{p}{:}
+                 \PY{n}{ret}\PY{p}{,}\PY{n}{frame} \PY{o}{=} \PY{n}{cam}\PY{o}{.}\PY{n}{read}\PY{p}{(}\PY{p}{)}
+                 
+                 
+                 
+                 \PY{n}{faces\PYZus{}coord} \PY{o}{=} \PY{n}{detect\PYZus{}face}\PY{p}{(}\PY{n}{frame}\PY{p}{)}
+         
+                 \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{faces\PYZus{}coord}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{faces} \PY{o}{=} \PY{n}{normalize\PYZus{}faces}\PY{p}{(}\PY{n}{frame}\PY{p}{,}\PY{n}{faces\PYZus{}coord}\PY{p}{)}   \PY{c+c1}{\PYZsh{}cuts the face and normalise its intensity}
+                     \PY{c+c1}{\PYZsh{}faces = normalize\PYZus{}intensity(faces)}
+                     \PY{n}{cv2}\PY{o}{.}\PY{n}{imwrite}\PY{p}{(}\PY{n}{folder} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{sample}\PY{p}{)}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.jpg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{faces}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}  \PY{c+c1}{\PYZsh{}save face as file}
+                     \PY{n}{plot\PYZus{}show}\PY{p}{(}\PY{n}{faces}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Image saved:}\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n+nb}{str}\PY{p}{(}\PY{n}{sample}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{}to display the face}
+                     \PY{n}{clear\PYZus{}output}\PY{p}{(}\PY{n}{wait}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}   \PY{c+c1}{\PYZsh{}removes the previous picture printed}
+                     \PY{k}{if} \PY{n}{flag\PYZus{}start\PYZus{}capturing} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+                         \PY{n}{sample} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+                     
+                 \PY{n}{draw\PYZus{}rectangle}\PY{p}{(}\PY{n}{frame}\PY{p}{,}\PY{n}{faces\PYZus{}coord}\PY{p}{)}
+                 \PY{n}{cv2}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Face}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{frame}\PY{p}{)}
+                 \PY{n}{keypress}\PY{o}{=}\PY{n}{cv2}\PY{o}{.}\PY{n}{waitKey}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+                 
+                 \PY{k}{if} \PY{n}{keypress} \PY{o}{==} \PY{n+nb}{ord}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{c}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}   \PY{c+c1}{\PYZsh{}after pressing c the pictures start capturing after the first picture taken}
+                     
+                     \PY{k}{if} \PY{n}{flag\PYZus{}start\PYZus{}capturing} \PY{o}{==} \PY{k+kc}{False}\PY{p}{:}
+                         \PY{n}{flag\PYZus{}start\PYZus{}capturing} \PY{o}{=} \PY{k+kc}{True}
+                     
+                 
+                 \PY{k}{if} \PY{n}{sample} \PY{o}{\PYZgt{}}\PY{l+m+mi}{500}\PY{p}{:}
+                     \PY{k}{break}
+         
+             \PY{n}{cam}\PY{o}{.}\PY{n}{release}\PY{p}{(}\PY{p}{)}
+             \PY{n}{cv2}\PY{o}{.}\PY{n}{destroyAllWindows}\PY{p}{(}\PY{p}{)}
+         \PY{k}{else}\PY{p}{:}
+             \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{This name already exists.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection{Create dataset for unknown
+people}\label{create-dataset-for-unknown-people}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}56}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} datasets for other class}
+         
+         \PY{n}{basepath} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C:}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{Users}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{manan}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{scikit\PYZus{}learn\PYZus{}data}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{lfw\PYZus{}home}\PY{l+s+se}{\PYZbs{}\PYZbs{}}\PY{l+s+s1}{lfw\PYZus{}funneled}\PY{l+s+s1}{\PYZsq{}}
+         \PY{c+c1}{\PYZsh{}/home/manan/scikit\PYZus{}learn\PYZus{}data/lfw\PYZus{}home}
+         \PY{n}{images} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{listdir}\PY{p}{(}\PY{n}{basepath}\PY{p}{)} \PY{c+c1}{\PYZsh{}all folder names are stored in images }
+         \PY{n+nb}{print} \PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{images}\PY{p}{)}\PY{p}{)}
+         \PY{n}{data} \PY{o}{=} \PY{n}{images}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{210}\PY{p}{]}  \PY{c+c1}{\PYZsh{}picked 200 folders from starting and then processed for unknown dataset.}
+         \PY{k}{for} \PY{n}{i}\PY{p}{,}\PY{n}{folder} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{data}\PY{p}{,}\PY{n}{start}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{}enumerate is used to put folder names in data and start indexing from 1.}
+             
+             \PY{n}{files}\PY{o}{=}\PY{n}{os}\PY{o}{.}\PY{n}{listdir}\PY{p}{(}\PY{n}{basepath}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/}\PY{l+s+s1}{\PYZsq{}}\PY{o}{+}\PY{n}{folder}\PY{p}{)}  \PY{c+c1}{\PYZsh{}all the images\PYZsq{} name are stored in files}
+             \PY{k}{for} \PY{n}{k}\PY{p}{,}\PY{n}{img} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{files}\PY{p}{,}\PY{n}{start}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{img}\PY{o}{.}\PY{n}{endswith}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.jpg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}   \PY{c+c1}{\PYZsh{}to check that it is an image}
+                     \PY{c+c1}{\PYZsh{}print img}
+                     \PY{n}{frame}\PY{o}{=}\PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{n}{basepath}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/}\PY{l+s+s1}{\PYZsq{}}\PY{o}{+}\PY{n}{folder}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/}\PY{l+s+s1}{\PYZsq{}}\PY{o}{+}\PY{n}{img}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{)} \PY{c+c1}{\PYZsh{}reads the image also 0 indicates it to be read as grayscale image.}
+                 \PY{c+c1}{\PYZsh{}print frame}
+                     
+                     \PY{n}{faces\PYZus{}coord} \PY{o}{=} \PY{n}{detect\PYZus{}face}\PY{p}{(}\PY{n}{frame}\PY{p}{)}
+                     \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{faces\PYZus{}coord}\PY{p}{)}\PY{p}{:}
+                         \PY{n}{faces} \PY{o}{=} \PY{n}{cut\PYZus{}faces}\PY{p}{(}\PY{n}{frame}\PY{p}{,} \PY{n}{faces\PYZus{}coord}\PY{p}{)}
+                         \PY{c+c1}{\PYZsh{}print faces}
+                         \PY{n}{faces} \PY{o}{=} \PY{n}{normalize\PYZus{}intensity}\PY{p}{(}\PY{n}{faces}\PY{p}{)}
+                         \PY{n}{faces} \PY{o}{=} \PY{n}{resize}\PY{p}{(}\PY{n}{faces}\PY{p}{)}
+                         \PY{n}{cv2}\PY{o}{.}\PY{n}{imwrite}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{people/unknown/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.jpg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{faces}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+                         \PY{k}{break}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+5760
+
+    \end{Verbatim}
+
+    \subsubsection{collect dataset}\label{collect-dataset}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}57}]:} \PY{k}{def} \PY{n+nf}{collect\PYZus{}dataset}\PY{p}{(}\PY{p}{)}\PY{p}{:}  \PY{c+c1}{\PYZsh{}read all the faces and store them in the form of an array.}
+             \PY{n}{images} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{labels} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{labels\PYZus{}dic} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+             \PY{c+c1}{\PYZsh{}people = [person for person in os.listdir(\PYZdq{}Male\PYZus{}female/\PYZdq{})]}
+             \PY{n}{people} \PY{o}{=} \PY{p}{[}\PY{n}{person} \PY{k}{for} \PY{n}{person} \PY{o+ow}{in} \PY{n}{os}\PY{o}{.}\PY{n}{listdir}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{people/}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{]}
+             \PY{c+c1}{\PYZsh{}people = [person for person in os.listdir(\PYZdq{}people/\PYZdq{})]}
+             \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{person} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{people}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{labels\PYZus{}dic}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{person}
+                 \PY{k}{for} \PY{n}{image} \PY{o+ow}{in} \PY{n}{os}\PY{o}{.}\PY{n}{listdir}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{people/}\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n}{person}\PY{p}{)}\PY{p}{:}
+                     \PY{k}{if} \PY{n}{image}\PY{o}{.}\PY{n}{endswith}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.jpg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                         \PY{n}{images}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{people/}\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n}{person} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n}{image}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+                         \PY{n}{labels}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{i}\PY{p}{)}
+             \PY{k}{return} \PY{p}{(}\PY{n}{images}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{labels}\PY{p}{)}\PY{p}{,} \PY{n}{labels\PYZus{}dic}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}58}]:} \PY{n}{images}\PY{p}{,} \PY{n}{labels}\PY{p}{,} \PY{n}{labels\PYZus{}dic} \PY{o}{=} \PY{n}{collect\PYZus{}dataset}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}59}]:} \PY{n+nb}{print} \PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{images}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print} \PY{p}{(}\PY{n}{labels\PYZus{}dic}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+704
+\{0: 'manan', 1: 'unknown'\}
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}60}]:} \PY{n}{labels}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}60}]:} array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}61}]:} \PY{n}{X\PYZus{}train}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{images}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}62}]:} \PY{n}{X\PYZus{}train}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}62}]:} (704, 62, 47)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}63}]:} \PY{n}{train}\PY{o}{=}\PY{n}{X\PYZus{}train}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{)}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}64}]:} \PY{n}{train}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}64}]:} (704, 2914)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}65}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{decomposition} \PY{k}{import} \PY{n}{PCA}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k}{import} \PY{n}{StandardScaler}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}66}]:} \PY{n}{sc} \PY{o}{=} \PY{n}{StandardScaler}\PY{p}{(}\PY{p}{)}
+         \PY{n}{X\PYZus{}train\PYZus{}sc} \PY{o}{=} \PY{n}{sc}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{float64}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}67}]:} \PY{n}{pca1} \PY{o}{=} \PY{n}{PCA}\PY{p}{(}\PY{n}{n\PYZus{}components}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{97}\PY{p}{)}
+         \PY{n}{new\PYZus{}train}\PY{o}{=}\PY{n}{pca1}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{X\PYZus{}train\PYZus{}sc}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}68}]:} \PY{n}{pca1}\PY{o}{.}\PY{n}{n\PYZus{}components\PYZus{}}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}68}]:} 177
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}69}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{svm} \PY{k}{import} \PY{n}{SVC}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{GridSearchCV}\PY{p}{,}\PY{n}{KFold}  \PY{c+c1}{\PYZsh{}gridsearchcv is used to pass multiple values of C and kFold is used to find number of times data has been executed.}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}70}]:} \PY{n}{kf}\PY{o}{=}\PY{n}{KFold}\PY{p}{(}\PY{n}{n\PYZus{}splits}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,}\PY{n}{shuffle}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}71}]:} \PY{n}{param\PYZus{}grid} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{p}{[}\PY{o}{.}\PY{l+m+mi}{0001}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{001}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{01}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{]}\PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}72}]:} \PY{n}{gs\PYZus{}svc} \PY{o}{=} \PY{n}{GridSearchCV}\PY{p}{(}\PY{n}{SVC}\PY{p}{(}\PY{n}{kernel}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{linear}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{probability}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{p}{,}\PY{n}{param\PYZus{}grid}\PY{o}{=}\PY{n}{param\PYZus{}grid}\PY{p}{,}\PY{n}{cv}\PY{o}{=}\PY{n}{kf}\PY{p}{,}\PY{n}{scoring}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{accuracy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}73}]:} \PY{n}{gs\PYZus{}svc}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{new\PYZus{}train}\PY{p}{,}\PY{n}{labels}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}73}]:} GridSearchCV(cv=KFold(n\_splits=5, random\_state=None, shuffle=True),
+                error\_score='raise',
+                estimator=SVC(C=1.0, cache\_size=200, class\_weight=None, coef0=0.0,
+           decision\_function\_shape='ovr', degree=3, gamma='auto', kernel='linear',
+           max\_iter=-1, probability=True, random\_state=None, shrinking=True,
+           tol=0.001, verbose=False),
+                fit\_params=None, iid=True, n\_jobs=1,
+                param\_grid=\{'C': [0.0001, 0.001, 0.01, 0.1, 1, 10]\},
+                pre\_dispatch='2*n\_jobs', refit=True, return\_train\_score='warn',
+                scoring='accuracy', verbose=0)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}74}]:} \PY{n}{gs\PYZus{}svc}\PY{o}{.}\PY{n}{best\PYZus{}score\PYZus{}}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}74}]:} 0.9928977272727273
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}75}]:} \PY{n}{gs\PYZus{}svc}\PY{o}{.}\PY{n}{best\PYZus{}params\PYZus{}}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}75}]:} \{'C': 0.001\}
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}76}]:} \PY{n}{clf}\PY{o}{=}\PY{n}{gs\PYZus{}svc}\PY{o}{.}\PY{n}{best\PYZus{}estimator\PYZus{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}77}]:} \PY{n}{clf}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}77}]:} SVC(C=0.001, cache\_size=200, class\_weight=None, coef0=0.0,
+           decision\_function\_shape='ovr', degree=3, gamma='auto', kernel='linear',
+           max\_iter=-1, probability=True, random\_state=None, shrinking=True,
+           tol=0.001, verbose=False)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}78}]:} \PY{k+kn}{import} \PY{n+nn}{pickle}
+         \PY{k+kn}{import} \PY{n+nn}{pygame}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}79}]:} \PY{n}{filename} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{svc\PYZus{}linear\PYZus{}face.pkl}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{f}\PY{o}{=}\PY{n+nb}{open}\PY{p}{(}\PY{n}{filename}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{wb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{pickle}\PY{o}{.}\PY{n}{dump}\PY{p}{(}\PY{n}{clf}\PY{p}{,}\PY{n}{f}\PY{p}{)}
+          
+         
+         \PY{n}{f}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}80}]:} \PY{n}{filename} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{svc\PYZus{}linear\PYZus{}face.pkl}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{svc1} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n+nb}{open}\PY{p}{(}\PY{n}{filename}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}81}]:} \PY{n}{cam} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{VideoCapture}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{font}\PY{o}{=}\PY{n}{cv2}\PY{o}{.}\PY{n}{FONT\PYZus{}HERSHEY\PYZus{}PLAIN}
+         \PY{n}{cv2}\PY{o}{.}\PY{n}{namedWindow}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{opencv\PYZus{}face}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{WINDOW\PYZus{}AUTOSIZE}\PY{p}{)}
+         
+         
+         
+         \PY{k}{while} \PY{k+kc}{True}\PY{p}{:}
+             \PY{n}{ret}\PY{p}{,}\PY{n}{frame} \PY{o}{=} \PY{n}{cam}\PY{o}{.}\PY{n}{read}\PY{p}{(}\PY{p}{)}
+             
+             
+             \PY{n}{faces\PYZus{}coord} \PY{o}{=} \PY{n}{detect\PYZus{}face}\PY{p}{(}\PY{n}{frame}\PY{p}{)} \PY{c+c1}{\PYZsh{} detect more than one face}
+             \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{faces\PYZus{}coord}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{faces} \PY{o}{=} \PY{n}{normalize\PYZus{}faces}\PY{p}{(}\PY{n}{frame}\PY{p}{,} \PY{n}{faces\PYZus{}coord}\PY{p}{)}
+                 \PY{c+c1}{\PYZsh{}faces = normalize\PYZus{}intensity(faces)}
+                 \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{face} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{faces}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{} for each detected face}
+                     
+                     
+                     \PY{c+c1}{\PYZsh{}cv2.imwrite(\PYZsq{}trainingData/female/picture\PYZus{}BGR5.jpg\PYZsq{},face)}
+                     \PY{n}{t}\PY{o}{=}\PY{n}{face}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+                     \PY{n}{t}\PY{o}{=}\PY{n}{sc}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{t}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{float64}\PY{p}{)}\PY{p}{)}
+                     \PY{n}{test} \PY{o}{=} \PY{n}{pca1}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{t}\PY{p}{)}    
+                     \PY{c+c1}{\PYZsh{}print test}
+                     \PY{c+c1}{\PYZsh{}transform = test.reshape(1,\PYZhy{}1)}
+                     \PY{c+c1}{\PYZsh{}print transform}
+                     \PY{n}{prob}\PY{o}{=}\PY{n}{svc1}\PY{o}{.}\PY{n}{predict\PYZus{}proba}\PY{p}{(}\PY{n}{test}\PY{p}{)}
+                     \PY{n}{confidence} \PY{o}{=} \PY{n}{svc1}\PY{o}{.}\PY{n}{decision\PYZus{}function}\PY{p}{(}\PY{n}{test}\PY{p}{)}
+                     \PY{n+nb}{print} \PY{p}{(}\PY{n}{confidence}\PY{p}{)}
+                     \PY{n+nb}{print} \PY{p}{(}\PY{n}{prob}\PY{p}{)}
+                    
+                     
+                     
+                     \PY{n}{pred} \PY{o}{=} \PY{n}{svc1}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{test}\PY{p}{)}
+                     \PY{n+nb}{print} \PY{p}{(}\PY{n}{pred}\PY{p}{,}\PY{n}{pred}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+                    
+                     \PY{n}{name}\PY{o}{=}\PY{n}{labels\PYZus{}dic}\PY{p}{[}\PY{n}{pred}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)}
+                     \PY{n+nb}{print} \PY{p}{(}\PY{n}{name}\PY{p}{)}
+                     
+                     \PY{c+c1}{\PYZsh{}pred = labels\PYZus{}dic[pred[0]].capitalize()}
+                     \PY{c+c1}{\PYZsh{}threshold = .50}
+                     \PY{k}{if} \PY{n}{name}\PY{o}{==}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Unknown}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}
+                         \PY{n}{pygame}\PY{o}{.}\PY{n}{init}\PY{p}{(}\PY{p}{)}
+                         \PY{n}{beep}\PY{o}{=}\PY{n}{pygame}\PY{o}{.}\PY{n}{mixer}\PY{o}{.}\PY{n}{Sound}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{beep\PYZhy{}01a.wav}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                         \PY{n}{beep}\PY{o}{.}\PY{n}{play}\PY{p}{(}\PY{p}{)}
+                     
+                         
+                     \PY{n}{cv2}\PY{o}{.}\PY{n}{putText}\PY{p}{(}\PY{n}{frame}\PY{p}{,}\PY{n}{name}\PY{p}{,}\PY{p}{(}\PY{n}{faces\PYZus{}coord}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{faces\PYZus{}coord}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{,}
+                                \PY{n}{cv2}\PY{o}{.}\PY{n}{FONT\PYZus{}HERSHEY\PYZus{}PLAIN}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{66}\PY{p}{,} \PY{l+m+mi}{53}\PY{p}{,} \PY{l+m+mi}{243}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+                     
+                         
+                    
+                    \PY{c+c1}{\PYZsh{} if prob[0][1]\PYZgt{}.85:}
+                         
+                     \PY{c+c1}{\PYZsh{}    cv2.putText(frame, \PYZsq{}vineet\PYZsq{},(faces\PYZus{}coord[i][0], faces\PYZus{}coord[i][1] \PYZhy{} 10),}
+                      \PY{c+c1}{\PYZsh{}               cv2.FONT\PYZus{}HERSHEY\PYZus{}PLAIN, 2, (66, 53, 243), 2)}
+                     
+                         
+                     \PY{c+c1}{\PYZsh{}else:}
+                      \PY{c+c1}{\PYZsh{}   cv2.putText(frame,\PYZsq{}unknown\PYZsq{},(faces\PYZus{}coord[i][0], faces\PYZus{}coord[i][1] \PYZhy{} 10),}
+                       \PY{c+c1}{\PYZsh{}              cv2.FONT\PYZus{}HERSHEY\PYZus{}PLAIN, 3, (66, 53, 243), 2)}
+                         
+                         
+                    
+                 \PY{n}{clear\PYZus{}output}\PY{p}{(}\PY{n}{wait} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+                 \PY{n}{draw\PYZus{}rectangle}\PY{p}{(}\PY{n}{frame}\PY{p}{,} \PY{n}{faces\PYZus{}coord}\PY{p}{)} \PY{c+c1}{\PYZsh{} rectangle around face}
+                 
+             \PY{n}{cv2}\PY{o}{.}\PY{n}{putText}\PY{p}{(}\PY{n}{frame}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ESC to exit}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{frame}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,}\PY{n}{cv2}\PY{o}{.}\PY{n}{FONT\PYZus{}HERSHEY\PYZus{}PLAIN}\PY{p}{,} \PY{l+m+mf}{1.3}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{66}\PY{p}{,} \PY{l+m+mi}{53}\PY{p}{,} \PY{l+m+mi}{243}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,}
+                         \PY{n}{cv2}\PY{o}{.}\PY{n}{LINE\PYZus{}AA}\PY{p}{)}
+             
+             \PY{n}{cv2}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{opencv\PYZus{}face}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{frame}\PY{p}{)} \PY{c+c1}{\PYZsh{} live feed in external}
+             \PY{k}{if} \PY{n}{cv2}\PY{o}{.}\PY{n}{waitKey}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{27}\PY{p}{:}
+                 \PY{k}{break}
+                 
+         \PY{n}{cam}\PY{o}{.}\PY{n}{release}\PY{p}{(}\PY{p}{)}
+         \PY{n}{cv2}\PY{o}{.}\PY{n}{destroyAllWindows}\PY{p}{(}\PY{p}{)}
+                 
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[0.08235928]
+[[0.43638173 0.56361827]]
+[1] 1
+Unknown
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
